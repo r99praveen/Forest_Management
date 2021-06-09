@@ -1,5 +1,4 @@
 package com.cg.fms.controller;
-
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.cg.fms.services.IOrderService;
-import com.cg.fms.entities.Orders;
+import com.cg.fms.entities.Order;
 import com.cg.fms.exception.OrderNotFoundException;
+import com.cg.fms.services.IOrderService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,57 +24,66 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/orders")
 public class OrderController {
 
-	
-	
 	Logger logger = LoggerFactory.getLogger(OrderController.class);
 	
 	@Autowired
 	private IOrderService service;
 	
 	
-	@GetMapping("/getById/{orderNumber}")
-	@ApiOperation("Get Order By orderNumber")
-	public Orders getOrder(@PathVariable int orderNumber) throws OrderNotFoundException {
-		logger.info("Inside fetchById %s", orderNumber);
-		return service.getOrder(orderNumber);
+	
+	
+	
+	@GetMapping("/getById/{ordernumber}") 
+	@ApiOperation("Get Order By OrderNumber")
+	public Order fetchById(@PathVariable int ordernumber) throws OrderNotFoundException {
+		logger.info("Inside fetchById %s", ordernumber);
+		return service.fetchById(ordernumber);
 	}
+		
+	
 		
 		
 	@PostMapping("/save")
-	@ApiOperation("Place a new order")
-	public ResponseEntity<Orders> save(@Valid @RequestBody Orders order) {
+	@ApiOperation("Add a new Order")
+	public ResponseEntity<Order> save(@Valid @RequestBody Order order) {
 		logger.info("Adding a order : " + order);
-		Orders ord = service.addOrder(order);
+		Order ord = service.addOrder(order);
 		return new ResponseEntity<>(ord, HttpStatus.CREATED);
 	}
 	
-	//update a Order
+	
+	
 	
 	@PutMapping("/update")
 	@ApiOperation("Update an Existing Order")
-	public void update(@Valid @RequestBody Orders order) {
-		logger.info("Updating a order!!");
+	public void update(@Valid @RequestBody Order order) {
+		logger.info("Updating a order details!!");
 		service.updateOrder(order);
 	}
-
 	
-	@DeleteMapping("/delete/{orderNumber}")
+	
+	
+	
+	@DeleteMapping("/delete/{ordernumber}")
 	@ApiOperation("Delete an Existing Order")
-	public ResponseEntity<Void> delete(@PathVariable int orderNumber) throws OrderNotFoundException {
-		logger.info("Deleting a order!!");
-		service.delOrder(orderNumber);
+	public ResponseEntity<Void> delete(@PathVariable int ordernumber) throws OrderNotFoundException {
+		logger.info("Deleting a Order!!");
+		service.delOrder(ordernumber);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
-
+	
+	
+	// get all product
 	
 	@GetMapping("/getAll")
-	@ApiOperation("Fetch all order Details")
-	public List<Orders> findAllOrders(@PathVariable int customerId) {
-	logger.info("Fetching all order!");
-	return service.findAllOrders(customerId);
+	@ApiOperation("Fetch all Order Details")
+	public List<Order> fetch() {
+	logger.info("Fetching all Orders!");
+	return service.fetchAll();
 	}
-}
 	
+}
 
-
+	
+	
 	

@@ -4,15 +4,48 @@ import java.util.List;
 
 import com.cg.fms.entities.Scheduler;
 import com.cg.fms.exception.InvalidSchedulerException;
+import com.cg.fms.exception.SchedulerNotFoundExcption;
 
 public interface ISchedulerservice {
-	public Scheduler getScheduler(int schedulerId) throws InvalidSchedulerException;
+	
+	 Scheduler fetchById(int schedulerId) throws SchedulerNotFoundExcption;
 
-	public long updateScheduler(Scheduler scheduler);
+	 void updateScheduler(Scheduler scheduler);
 
-	public void delScheduler(int schedulerId) throws InvalidSchedulerException;
+	 void delScheduler(int schedulerId) throws  SchedulerNotFoundExcption;
 
-	List<Scheduler> getAllSchedulers(int schedulerId);
-
-	public Scheduler addScheduler(Scheduler scheduler);
+	  Scheduler addScheduler(Scheduler scheduler);
+	
+	 List<Scheduler> fetchAll();
 }
+
+/*package com.cg.fms.services;
+
+
+import com.cg.fms.exception.ContractNotFoundException;
+import com.cg.fms.entities.Contract;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+
+
+@Service
+public interface IContractService {
+
+	
+	
+	Contract fetchById(int contractnumber) throws ContractNotFoundException;
+	
+	
+	Contract addContract(Contract contract);
+	
+	
+	void  updateContract(Contract contract);
+	
+	
+	void delContract(int contractnumber) throws ContractNotFoundException;
+	
+	
+	List<Contract> fetchAll();
+}*/

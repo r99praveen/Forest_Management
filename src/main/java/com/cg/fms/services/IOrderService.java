@@ -1,30 +1,29 @@
 package com.cg.fms.services;
 
-import java.util.List;
 
-import javax.persistence.criteria.Order;
-import javax.validation.Valid;
+import com.cg.fms.exception.OrderNotFoundException;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.cg.fms.entities.Orders;
-import com.cg.fms.exception.OrderNotFoundException;
+import com.cg.fms.entities.Order;
 
 @Service
 public interface IOrderService {
 
-	public Orders getOrder(int orderNumber) throws OrderNotFoundException;
-
-	public Orders addOrder(Orders order);
-
-	public void delOrder(int orderNumber) throws OrderNotFoundException;
-
-	public Orders updateOrder( Orders orders);
-
-	List<Orders> findAllOrders(int customerId);
-
 	
-
-
 	
+	Order fetchById(int ordernumber) throws OrderNotFoundException;
+	
+	
+	Order addOrder(Order order);
+	
+	
+	void  updateOrder(Order order);
+	
+	
+	void delOrder(int ordernumber) throws OrderNotFoundException;
+	
+	
+	List<Order> fetchAll();
 }

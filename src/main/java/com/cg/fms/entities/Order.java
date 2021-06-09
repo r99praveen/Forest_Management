@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @Data                                      
 @NoArgsConstructor                        
 @Entity                                   
-@Table(name = "Contract_tbl")             
-public class Contract {
+@Table(name = "Order_tbl")             
+public class Order {
 	
 	@Id                                
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer contractnumber;
+	private Integer ordernumber;
 	
 	@Column(name = "deliveryplace")       
 	@NotNull
