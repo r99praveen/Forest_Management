@@ -1,5 +1,4 @@
 package com.cg.fms.entities;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,21 +16,41 @@ import lombok.NoArgsConstructor;
 @Table(name = "Contract_tbl")             
 public class Contract {
 	
-	@Id                                
+	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer contractnumber;
+	private Integer id;
 	
-	@Column(name = "deliveryplace")       
+	
+	@Column(name = "customer_name")       
 	@NotNull
-	private String deliveryplace;
+	private String customer_name;
 	
-	@Column(name = "deliverydate")
+	@Column(name = "product_name")       
 	@NotNull
-	private String deliverydate;
+	private String product_name;
 	
-	@Column(name = "quantity")
+	@Column(name = "quantity")       
 	@NotNull
 	private String quantity;
+	
+	
+	@Column(name = "duration")
+	@NotNull
+	private String duration;
+	
+	@Column(name = "value")
+	@NotNull
+	private String value;
+	
+	@Column(name = "customer_number")       
+	@NotNull
+	private String customer_number;
+	
+	
+	@Column(name = "customer_location")       
+	@NotNull
+	private String customer_location;
 	
 	
 }

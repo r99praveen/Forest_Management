@@ -15,7 +15,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.cg.fms.exception.CustomerNotFoundException;
 import com.cg.fms.exception.InvalidOrderException;
+import com.cg.fms.exception.OrderNotFoundException;
 import com.cg.fms.exception.ProductNotFoundExcption;
+import com.cg.fms.exception.SchedulerNotFoundExcption;
+import com.cg.fms.exception.CartItemNotFoundException;
+
 
 @ControllerAdvice
 public class ValidationAndExceptionHandler extends ResponseEntityExceptionHandler {
@@ -39,6 +43,29 @@ public class ValidationAndExceptionHandler extends ResponseEntityExceptionHandle
 
 		return new ResponseEntity<>("Invalid Order!!", HttpStatus.NOT_FOUND);
 
+	}
+	@ExceptionHandler(value = CartItemNotFoundException.class)
+	public ResponseEntity<Object> exception(CartItemNotFoundException exception) {
+
+		return new ResponseEntity<>("Cart item Not Found!!", HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(value = SchedulerNotFoundExcption.class)
+	public ResponseEntity<Object> exception(SchedulerNotFoundExcption exception) {
+
+		return new ResponseEntity<>("Scheduler Not Found!!", HttpStatus.NOT_FOUND);
+	}
+	
+//	@ExceptionHandler(value = ContractNotFoundException.class)
+//	public ResponseEntity<Object> exception(ContractNotFoundException exception) {
+//
+//		return new ResponseEntity<>("Contract Not Found!!", HttpStatus.NOT_FOUND);
+//	}	
+	
+	@ExceptionHandler(value = OrderNotFoundException.class)
+	public ResponseEntity<Object> exception(OrderNotFoundException exception) {
+
+		return new ResponseEntity<>("Order Not Found!!", HttpStatus.NOT_FOUND);
 	}
 
 	@Override

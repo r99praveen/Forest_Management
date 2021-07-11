@@ -26,12 +26,13 @@ public class SwaggerConfig {
 	}
 
 	private Predicate<String> postPaths() {
-		return or(regex("/order/.*"), regex("/scheduler/.*"),regex("/contract/.*"));
+		return or(regex("/customers/.*"), regex("/orders/.*"), regex("/scheduler/.*"),regex("/contracts/.*"), regex("/cart/.*"), regex("/products/.*"), regex("/Admin/.*"), regex("/Land/.*")
+				,regex("/register-adminScheduler/.*"), regex("/register-admin/.*"));
 	}
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Orders API").description("Praveen API reference for developers")
-				.termsOfServiceUrl("http://praveen.com").license("Raza License").licenseUrl("r21praveen@cgs.com")
+				.termsOfServiceUrl("http://praveen.com").license("praveen License").licenseUrl("r21praveen@cgs.com")
 				.version("1.0").build();
 	}
 

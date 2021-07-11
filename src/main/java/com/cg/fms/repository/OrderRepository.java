@@ -15,19 +15,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
 	
 	
 	
-	//Order findById(int ordernumber);
 	
-	//Order fetchById(int ordernumber);
-	
-	
-	//Order deleteById(int ordernumber);
-	
-	
-		//boolean addOrder(boolean order);
-		 
-		 //boolean updateOrder(boolean order);
-		 
-		// boolean deleteOrder(boolean order);
-		 
-		 //List<Order> getAllOrders();
 }

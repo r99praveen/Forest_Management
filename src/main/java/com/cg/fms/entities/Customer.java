@@ -8,64 +8,56 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "Schdl_tbl")
-public class Scheduler{
+@Table(name = "Customer_tbl")
+public class Customer {
 
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
 	
-	@Column(name = "cart_item")       
+	@Column(name = "name")
 	@NotNull
-	private String cartItem;
-	
-	@Column(name = "quantity")       
-	@NotNull
-	private int quantity;
-	
-	@Column(name = "totalPrice")
-	@NotNull
-	private int totalPrice;
-	
-	@Column(name = "name")       
-	@NotNull
+	@Size(min = 2, message = "Name should have mininum 2 characters!!")
 	private String name;
 	
-	@Column(name = "Email")       
-	@NotNull
+
+	@Column(name = "email")
+	@Email(message = "Enter a valid email address!!")
 	private String email;
+	
 	
 	@Column(name = "address")
 	@NotNull
 	private String address;
 	
-	@Column(name = "Contact")
-	@NotNull
-	private int contact;
 	
-
-	@Column(name = "postalCode")
-	@NotNull
-	private int postalCode;
-	
-	@Column(name = "Town")
-	@NotNull
+	@Column(name = "town")
 	private String town;
 	
 	
-	@Column(name = "truckNumber")
+	@Column(name = "postal_code")
 	@NotNull
-	private int truckNumber;
+	private long postalcode;
 	
 	
+	@Column(name = "contact")
+	private long contact;
+
+
+	
+//	@OneToMany(targetEntity = Order.class, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "co_fk", referencedColumnName = "id")
+//	private List<Order> orders;
+	
+	
+
+
+
 }
